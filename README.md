@@ -1,43 +1,36 @@
-# 👁️ OSIRIS PASS
+# OSIRIS PASS
 
-> **DECENTRALIZED MULTI-VAULT KEEPER**  
-> *Powered by @xrlmop*
+## DECENTRALIZED MULTI-VAULT KEEPER
+Developed by @xrlmop
 
-Универсальный анонимный менеджер паролей с каскадным шифрованием **AES-256-GCM + ChaCha20-Poly1305** и анимированной заставкой в стиле киберпанк. Полностью совместим с **macOS** и **Windows**.
+An autonomous password manager utilizing cascade encryption with AES-256-GCM and ChaCha20-Poly1305. The graphical user interface is built on CustomTkinter using fixed-width fonts. The application operates entirely locally, requires no external servers, and does not collect logs.
 
----
+## Cryptographic Architecture
 
-## 🚀 Быстрая установка и запуск (Готовые скрипты)
+1. First Layer: AES-256-GCM block cipher.
+2. Second Layer: ChaCha20-Poly1305 stream cipher.
+3. Key Derivation: PBKDF2HMAC-SHA256 function with 600,000 iterations and a cryptographically secure salt using os.urandom(16).
+4. Threading: Database decryption is executed in independent background threading processes to prevent graphical interface locking.
 
-### 🍏 Для macOS (в Терминале):
+## Deployment Instructions
+
+### macOS (Terminal)
 ```zsh
-# 1. Клонировать репозиторий
 git clone https://github.com
 cd osiris-pass
-
-# 2. Установить зависимости (Homebrew Python 3.14)
 pip3 install customtkinter cryptography --break-system-packages
-
-# 3. Запустить систему
 python3 main.py
 ```
 
-### 💻 Для Windows (в Командной строке / CMD):
+### Windows (Command Prompt / CMD)
 ```bash
-# 1. Клонировать репозиторий
 git clone https://github.com
 cd osiris-pass
-
-# 2. Установить крипто-модули
 pip install customtkinter cryptography
-
-# 3. Запустить систему
 python main.py
 ```
 
----
-
-## 🔒 Безопасность и архитектура
-* **Каскадная защита:** Данные шифруются последовательно двумя независимыми алгоритмами.
-* **Анонимность:** Программа не требует регистрации, email или личных данных. Всё хранится строго локально на твоем устройстве.
-* **Кроссплатформенность:** Автоматическая адаптация пиксельных шрифтов (`Courier` на Mac, `Consolas` на Windows).
+## System Specifications and Features
+* Brute-Force Protection: Implementing a cascade key derivation scheme.
+* Local Storage: Session data and encrypted vaults are kept within the user's directory in isolated JSON/ENC structures.
+* Interface Adaptation: Automatic font selection using Courier (macOS) and Consolas (Windows).
