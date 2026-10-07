@@ -1,0 +1,8 @@
+vault_*.enc
+accounts.json
+build/
+dist/
+__pycache__/
+.DS_Store
+*.spec
+*.dmg
