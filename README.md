@@ -16,7 +16,7 @@ An autonomous password manager utilizing cascade encryption with AES-256-GCM and
 
 ### macOS (Terminal)
 ```zsh
-git clone https://github.com
+git clone (https://github.com/xrlmop/osiris-pass.git)
 cd osiris-pass
 pip3 install customtkinter cryptography --break-system-packages
 python3 main.py
@@ -24,7 +24,7 @@ python3 main.py
 
 ### Windows (Command Prompt / CMD)
 ```bash
-git clone https://github.com
+git clone (https://github.com/xrlmop/osiris-pass.git)
 cd osiris-pass
 pip install customtkinter cryptography
 python main.py
