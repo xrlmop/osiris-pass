@@ -22,10 +22,10 @@ jobs:
 
     - name: Run PyInstaller
       run: |
-        pyinstaller --noconfirm --onefile --windowed --icon=ra.ico --add-data "backend.py;." main.py
+        pyinstaller --noconfirm --onefile --windowed --name="OSIRIS" --icon="ra.ico" --add-data "backend.py;." --add-data "ra.ico;." main.py
 
     - name: Upload EXE Artifact
       uses: actions/upload-artifact@v4
       with:
         name: OSIRIS_PASS_Windows
-        path: dist/*.exe
+        path: dist/OSIRIS.exe
