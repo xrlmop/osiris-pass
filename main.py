@@ -135,9 +135,8 @@ class PasswordManagerApp(ctk.CTk):
         ]
         self.base_ascii_eye = "\n".join(self.eye_lines)
         
-        # Фікс сірого вікна: змушуємо macOS прокинутися та відрендерити інтерфейс
         self.update_idletasks()
-        self.geometry("851x621")  # Мікро-розтягування на 1 піксель для скидання багу буфера
+        self.geometry("851x621") 
         self.show_splash_screen()
 
     def show_splash_screen(self):
@@ -148,13 +147,12 @@ class PasswordManagerApp(ctk.CTk):
         self.splash_eye.place(relx=0.5, rely=0.4, anchor=tk.CENTER)
         self.splash_text = ctk.CTkLabel(self.splash_frame, text="", font=FONT_PIXEL_BIG, text_color="#0A0A0C")
         self.splash_text.place(relx=0.5, rely=0.75, anchor=tk.CENTER)
-        self.splash_text.configure(text_color="#0A0A0C")
         self.splash_author = ctk.CTkLabel(self.splash_frame, text="", font=FONT_PIXEL_SMALL, text_color="#0A0A0C")
         self.splash_author.place(relx=0.5, rely=0.82, anchor=tk.CENTER)
         
-        # Повертаємо початковий розмір назад після ініціалізації
         self.after(50, lambda: self.geometry("850x620"))
         self.after(300, lambda: self.build_eye_matrix_slowly(0))
+
 
     def build_eye_matrix_slowly(self, current_line):
         if current_line <= len(self.eye_lines):
