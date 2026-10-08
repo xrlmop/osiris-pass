@@ -1,0 +1,31 @@
+name: Build Windows EXE
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install customtkinter cryptography pyinstaller
+
+    - name: Run PyInstaller
+      run: |
+        pyinstaller --noconfirm --onefile --windowed --icon=ra.ico --add-data "backend.py;." main.py
+
+    - name: Upload EXE Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: OSIRIS_PASS_Windows
+        path: dist/*.exe
