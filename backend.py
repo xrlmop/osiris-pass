@@ -1,10 +1,16 @@
 import os
 import json
+from pathlib import Path
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM, ChaCha20Poly1305
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.primitives import hashes
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+if os.name == 'nt':
+    BASE_DIR = os.path.join(Path.home(), 'AppData', 'Roaming', 'OSIRIS_PASS')
+else:
+    BASE_DIR = os.path.expanduser('~/Library/Application Support/OSIRIS_PASS')
+
+os.makedirs(BASE_DIR, exist_ok=True)
 ACCOUNTS_INDEX_FILE = os.path.join(BASE_DIR, "accounts.json")
 
 def get_file_name(account_id: str) -> str:
